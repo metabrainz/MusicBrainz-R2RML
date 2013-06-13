@@ -4,6 +4,7 @@ MusicBrainz-R2RML
 R2RML mappings for the MusicBrainz schema on an entity-by-entity basis. 
 
 These can be run on the MusicBrainz server using ultrawrap, for which a script is provided (dump.sh).
+(You must set an environment variable ULTRAWRAP_HOME)
 
 Running musicbrainz-r2rml/dump.sh entity (where entity is artist, track, etc.) runs the appropriate set of mappings
 e.g. mappings/artist.ttl
