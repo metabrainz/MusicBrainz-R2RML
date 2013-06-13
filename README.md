@@ -11,3 +11,9 @@ to produce output in the form of NTriples
 e.g. output/artist.nt
 
 A virtual machine is available (for use with VirtualBox, VMware, etc.) with a replicated MusicBrainz database.
+
+Note that the file musicbrainz_compile_config.properties must reflect your DB name:
+* musicbrainz_db is the default for a snapshot
+* musicbrainz_db_slave is the default for a replicated database
+
+
