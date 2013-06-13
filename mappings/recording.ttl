@@ -1,0 +1,20 @@
+<file:///home/kurtjx/srcs/d2r-server-0.7/mapping.n3#Recording_5>
+      a       <http://www.w3.org/ns/r2rml#TriplesMap> ;
+      <http://www.w3.org/ns/r2rml#logicalTable>
+              [ <http://www.w3.org/ns/r2rml#sqlQuery>
+                        "SELECT * FROM musicbrainz.recording WHERE musicbrainz.recording.length IS NOT NULL "
+              ] ;
+      <http://www.w3.org/ns/r2rml#predicateObjectMap>
+              [ <http://www.w3.org/ns/r2rml#objectMap>
+                        [ <http://www.w3.org/ns/r2rml#column>
+                                  "length" ;
+                          <http://www.w3.org/ns/r2rml#datatype>
+                                  <http://www.w3.org/2001/XMLSchema#float>
+                        ] ;
+                <http://www.w3.org/ns/r2rml#predicate>
+                        <http://purl.org/ontology/mo/duration>
+              ] ;
+      <http://www.w3.org/ns/r2rml#subjectMap>
+              [ <http://www.w3.org/ns/r2rml#template>
+                        "http://musicbrainz.org/recording/{gid}#_"
+              ] .

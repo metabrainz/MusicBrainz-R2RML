@@ -1,0 +1,111 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+
+@prefix lb: <https://github.com/LinkedBrainz/r2rml/v0.1#> .
+@prefix ngs: <http://musicbrainz.org/NGS> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix is: <http://purl.org/ontology/is/core#> .
+@prefix isi: <http://purl.org/ontology/is/inst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+
+# MB release_group => mo:SignalGroup
+
+lb:sm_release_group rr:template "http://musicbrainz.org/signal-group/{gid}#_" .
+
+lb:ReleaseGroup a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "release_group"] ;
+  rr:subjectMap 
+    [rr:class mo:SignalGroup ;
+     rr:template "http://musicbrainz.org/signal-group/{gid}#_"] ;
+  rr:predicateObjectMap 
+    [rr:predicate mo:musicbrainz_guid ;
+     rr:objectMap [rr:column "gid" ; rr:datetype xsd:string]] .
+
+lb:release_group_name a rr:TriplesMap ;
+  rr:logicalTable 
+    [rr:sqlQuery """SELECT release_group.gid, release_name.name 
+                    FROM release_group 
+                      INNER JOIN release_name 
+                        ON release_group.name = release_name.id"""] ;
+  rr:subjectMap lb:sm_release_group ;
+  rr:predicateObjectMap 
+    [rr:predicate dc:title ;
+     rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
+
+#BN: removed the 'canonicalisation' that broke non-English Wikipedia URLs
+#BN: turned rdfs:seeAlso into foaf:isPrimaryTopicOf
+lb:release_group_wikipedia a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT release_group.gid, url  
+       FROM release_group
+         INNER JOIN l_release_group_url ON release_group.id
+                      = l_release_group_url.entity0
+         INNER JOIN link ON l_release_group_url.link = link.id 
+         INNER JOIN link_type ON link_type = link_type.id 
+         INNER JOIN url on l_release_group_url.entity1 = url.id  
+       WHERE link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'"""] ;
+  rr:subjectMap lb:sm_release_group ;
+  rr:predicateObjectMap 
+    [rr:predicate foaf:isPrimaryTopicOf ;
+     rr:objectMap [rr:column "url" ;
+                   rr:termType rr:IRI]] .
+
+#BN: fixed this to Wikipedias per language and use SQL REPLACE
+#pt.dbpedia.org wasn't resolving - to check
+lb:release_group_dbpedia a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT release_group.gid, 
+              REPLACE(REPLACE(url, 'wikipedia.org/wiki', 
+                                   'dbpedia.org/resource'), 
+                      'http://en.', 
+                      'http://')
+                AS url 
+       FROM release_group 
+         INNER JOIN l_release_group_url ON release_group.id 
+                      = l_release_group_url.entity0
+         INNER JOIN link ON l_release_group_url.link = link.id 
+         INNER JOIN link_type ON link_type = link_type.id 
+         INNER JOIN url on l_release_group_url.entity1 = url.id  
+       WHERE link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'
+       AND url SIMILAR TO 
+                 'http://(de|el|en|es|ko|pl|pt).wikipedia.org/wiki/%'"""] ;
+  rr:subjectMap lb:sm_release_group ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:seeAlso ;
+     rr:objectMap [rr:column "url"; rr:termType rr:IRI]] .
+
+#Covers IMDB, MusicMoz, IOBDB
+# N.B. could also produce Linked IMDB sameAs?
+lb:release_group_seeAlso a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT release_group.gid, musicbrainz.url.url 
+       FROM release_group
+         INNER JOIN l_release_group_url 
+           ON l_release_group_url.entity0 = release_group.id
+         INNER JOIN url
+           ON l_release_group_url.entity1 = url.id
+         INNER JOIN link
+           ON l_release_group_url.link = link.id
+         INNER JOIN link_type
+           ON link.link_type = link_type.id
+       WHERE link_type.gid IN
+         ('85b0a010-3237-47c7-8476-6fcefd4761af',
+          'd111c58d-0d9b-4675-99c1-ddc5a8e01847',
+          'fd87657e-aa2f-44ad-b5d8-d97c0c938a4d')"""] ;
+  rr:subjectMap lb:sm_release_group ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:seeAlso ;
+     rr:objectMap [rr:column "url" ; rr:termType rr:IRI]] .
+

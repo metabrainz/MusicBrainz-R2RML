@@ -1,0 +1,59 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+
+@prefix lb: <https://github.com/LinkedBrainz/r2rml/v0.1#> .
+@prefix ngs: <http://musicbrainz.org/NGS> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix is: <http://purl.org/ontology/is/core#> .
+@prefix isi: <http://purl.org/ontology/is/inst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+
+# MB medium, tracklist => mo:Record
+
+lb:sm_medium rr:template "http://musicbrainz.org/record/{id}#_" .
+
+lb:Medium a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "medium"] ;
+  rr:subjectMap [rr:class mo:Record ;
+                 rr:template "http://musicbrainz.org/record/{id}#_"] .
+
+lb:medium_name a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "medium"] ;
+  rr:subjectMap lb:sm_medium ;
+  rr:predicateObjectMap 
+    [rr:predicate dc:title ;
+     rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
+
+lb:medium_track a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT medium.id, track.id AS track_id
+       FROM medium
+         INNER JOIN tracklist ON medium.tracklist = tracklist.id
+         INNER JOIN track ON track.tracklist = tracklist.id"""] ;
+  rr:subjectMap lb:sm_medium ;
+  rr:predicateObjectMap [
+    rr:predicate mo:track ;
+    rr:objectMap [rr:template "http://musicbrainz.org/track/{track_id}#_" ;
+                  rr:termType rr:IRI]] .
+
+lb:medium_track_count a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT medium.id, tracklist.track_count 
+       FROM medium 
+         INNER JOIN tracklist ON medium.tracklist = tracklist.id"""];
+  rr:subjectMap lb:sm_medium ;
+  rr:predicateObjectMap 
+    [rr:predicate mo:track_count ;
+     rr:objectMap [rr:column "track_count" ; rr:datatype xsd:int]] .

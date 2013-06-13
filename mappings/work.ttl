@@ -1,0 +1,58 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+
+@prefix lb: <https://github.com/LinkedBrainz/r2rml/v0.1#> .
+@prefix ngs: <http://musicbrainz.org/NGS> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix is: <http://purl.org/ontology/is/core#> .
+@prefix isi: <http://purl.org/ontology/is/inst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+
+# MB work => mo:MusicalWork, mo:Composition
+
+lb:sm_work rr:template "http://musicbrainz.org/work/{gid}#_" .
+
+lb:Work a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "work"] ;
+  rr:subjectMap [rr:class mo:MusicalWork ;
+                 rr:template "http://musicbrainz.org/work/{gid}#_"] ;
+  rr:predicateObjectMap 
+    [rr:predicate mo:musicbrainz_guid ;
+     rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] .
+
+lb:work_composition a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "work"] ;
+  rr:subjectMap [rr:class mo:Composition ;
+                 rr:template "http://musicbrainz.org/work/{gid}#composition"] ;
+  rr:predicateObjectMap 
+    [rr:predicate mo:produced_work ;
+     rr:objectMap lb:sm_work] .
+
+#BN: turned rdfs:seeAlso into foaf:isPrimaryTopicOf
+lb:work_wikipedia a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT work.gid, url  
+       FROM work 
+         INNER JOIN l_url_work ON work.id = l_url_work.entity1
+         INNER JOIN link ON l_url_work.link = link.id 
+         INNER JOIN link_type ON link_type = link_type.id 
+         INNER JOIN url on l_url_work.entity0 = url.id  
+       WHERE link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'"""] ;
+  rr:subjectMap lb:sm_work ;
+  rr:predicateObjectMap 
+    [rr:predicate foaf:isPrimaryTopicOf ;
+     rr:objectMap [rr:column "url" ;
+                   rr:termType rr:IRI]] .
+

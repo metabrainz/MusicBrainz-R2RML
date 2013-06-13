@@ -1,0 +1,55 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+
+@prefix lb: <https://github.com/LinkedBrainz/r2rml/v0.1#> .
+@prefix ngs: <http://musicbrainz.org/NGS> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix is: <http://purl.org/ontology/is/core#> .
+@prefix isi: <http://purl.org/ontology/is/inst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+
+# MB label => mo:Label
+
+lb:sm_label rr:template "http://musicbrainz.org/label/{gid}#_" .
+
+lb:Label a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "label"] ;
+  rr:subjectMap [rr:class mo:Label ;
+                 rr:template "http://musicbrainz.org/label/{gid}#_"] ;
+  rr:predicateObjectMap 
+    [rr:predicate mo:musicbrainz_guid ;
+     rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] .
+
+
+#              ] ;
+#      <http://www.w3.org/ns/r2rml#predicateObjectMap> #ERROR with Ultrawrap
+#              [ <http://www.w3.org/ns/r2rml#objectMap>
+#                        [ <http://www.w3.org/ns/r2rml#parentTriplesMap>
+#                                  <file:///home/kurtjx/srcs/d2r-server-0.7/mapping.n3#LabelActivity>
+#                        ] ;
+#                <http://www.w3.org/ns/r2rml#predicate>
+#                        <http://purl.org/ontology/mo/activity>
+#              ] ;
+
+lb:label_country a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT label.gid, country.iso_code  
+       FROM label
+         INNER JOIN country ON country.id = label.country"""] ;
+  rr:subjectMap lb:sm_label ;
+  rr:predicateObjectMap 
+    [rr:predicate foaf:based_near ;
+     rr:objectMap [rr:template "http://ontologi.es/place/{iso_code}" ;
+                   rr:termType rr:IRI]] .
