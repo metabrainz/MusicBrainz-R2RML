@@ -87,15 +87,15 @@ lb:artist_gender a rr:TriplesMap ;
     [rr:predicate foaf:gender ;
      rr:objectMap [rr:column "gender"]] .
 
-lb:artist_country a rr:TriplesMap ;
+lb:artist_area a rr:TriplesMap ;
   rr:logicalTable[rr:sqlQuery 
-    """SELECT artist.gid, country.iso_code 
+    """SELECT artist.gid, area.gid AS area
        FROM artist
-            INNER JOIN country ON artist.country = country.id"""] ;
+            INNER JOIN area ON artist.area = area.id"""] ;
   rr:subjectMap lb:sm_artist ;
   rr:predicateObjectMap 
     [rr:predicate foaf:based_near ;
-     rr:objectMap [rr:template "http://ontologi.es/place/{iso_code}" ;
+     rr:objectMap [rr:template "http://musicbrainz.org/area/{area}#_" ;
                    rr:termType rr:IRI]] .
 
 lb:artist_credit_release_group a rr:TriplesMap ;
