@@ -32,6 +32,27 @@ lb:Label a rr:TriplesMap ;
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] .
 
+lb:label_area a rr:TriplesMap ;
+  rr:logicalTable[rr:sqlQuery 
+    """SELECT label.gid, area.gid AS area
+       FROM label
+            INNER JOIN area ON label.area = area.id"""] ;
+  rr:subjectMap lb:sm_label ;
+  rr:predicateObjectMap 
+    [rr:predicate foaf:based_near ;
+     rr:objectMap [rr:template "http://musicbrainz.org/area/{area}#_" ;
+                   rr:termType rr:IRI]] .
+
+#lb:label_country a rr:TriplesMap ;
+#  rr:logicalTable [rr:sqlQuery
+#    """SELECT label.gid, country.iso_code  
+#       FROM label
+#         INNER JOIN country ON country.id = label.country"""] ;
+#  rr:subjectMap lb:sm_label ;
+#  rr:predicateObjectMap 
+#    [rr:predicate foaf:based_near ;
+#     rr:objectMap [rr:template "http://ontologi.es/place/{iso_code}" ;
+#                   rr:termType rr:IRI]] .
 
 #              ] ;
 #      <http://www.w3.org/ns/r2rml#predicateObjectMap> #ERROR with Ultrawrap
@@ -43,13 +64,3 @@ lb:Label a rr:TriplesMap ;
 #                        <http://purl.org/ontology/mo/activity>
 #              ] ;
 
-lb:label_country a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery
-    """SELECT label.gid, country.iso_code  
-       FROM label
-         INNER JOIN country ON country.id = label.country"""] ;
-  rr:subjectMap lb:sm_label ;
-  rr:predicateObjectMap 
-    [rr:predicate foaf:based_near ;
-     rr:objectMap [rr:template "http://ontologi.es/place/{iso_code}" ;
-                   rr:termType rr:IRI]] .
