@@ -33,7 +33,7 @@ lb:area_dbpedia a rr:TriplesMap ;
                       'http://en.', 
                       'http://')
                 AS url 
-       FROM artist 
+       FROM area
          INNER JOIN l_area_url ON area.id = l_area_url.entity0
          INNER JOIN link ON l_area_url.link = link.id 
          INNER JOIN link_type ON link_type = link_type.id 
