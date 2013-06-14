@@ -62,30 +62,6 @@ lb:release_group_wikipedia a rr:TriplesMap ;
      rr:objectMap [rr:column "url" ;
                    rr:termType rr:IRI]] .
 
-#BN: fixed this to Wikipedias per language and use SQL REPLACE
-#pt.dbpedia.org wasn't resolving - to check
-lb:release_group_dbpedia a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery
-    """SELECT release_group.gid, 
-              REPLACE(REPLACE(url, 'wikipedia.org/wiki', 
-                                   'dbpedia.org/resource'), 
-                      'http://en.', 
-                      'http://')
-                AS url 
-       FROM release_group 
-         INNER JOIN l_release_group_url ON release_group.id 
-                      = l_release_group_url.entity0
-         INNER JOIN link ON l_release_group_url.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN url on l_release_group_url.entity1 = url.id  
-       WHERE link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'
-       AND url SIMILAR TO 
-                 'http://(de|el|en|es|ko|pl|pt).wikipedia.org/wiki/%'"""] ;
-  rr:subjectMap lb:sm_release_group ;
-  rr:predicateObjectMap 
-    [rr:predicate rdfs:seeAlso ;
-     rr:objectMap [rr:column "url"; rr:termType rr:IRI]] .
-
 #Covers IMDB, MusicMoz, IOBDB
 # N.B. could also produce Linked IMDB sameAs?
 lb:release_group_seeAlso a rr:TriplesMap ;

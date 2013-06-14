@@ -162,29 +162,6 @@ lb:artist_wikipedia a rr:TriplesMap ;
      rr:objectMap [rr:column "url" ;
                    rr:termType rr:IRI]] .
 
-#BN: fixed this to Wikipedias per language and use SQL REPLACE
-#pt.dbpedia.org wasn't resolving - to check
-lb:artist_dbpedia a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery
-    """SELECT artist.gid, 
-              REPLACE(REPLACE(url, 'wikipedia.org/wiki', 
-                                   'dbpedia.org/resource'), 
-                      'http://en.', 
-                      'http://')
-                AS url 
-       FROM artist 
-         INNER JOIN l_artist_url ON artist.id = l_artist_url.entity0
-         INNER JOIN link ON l_artist_url.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN url on l_artist_url.entity1 = url.id  
-       WHERE link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'
-       AND url SIMILAR TO 
-                 'http://(de|el|en|es|ko|pl|pt).wikipedia.org/wiki/%'"""] ;
-  rr:subjectMap lb:sm_artist ;
-  rr:predicateObjectMap 
-    [rr:predicate owl:sameAs ;
-     rr:objectMap [rr:column "url"; rr:termType rr:IRI]] .
-
 lb:artist_twitter a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
     """SELECT artist.gid, url  
