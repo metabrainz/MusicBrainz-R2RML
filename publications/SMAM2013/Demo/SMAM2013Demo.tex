@@ -1,0 +1,46 @@
+\documentclass{llncs}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{llncsdoc}
+\usepackage{color}
+\usepackage{url}
+%\usepackage{amssymb}
+\usepackage{rotating}
+
+\begin{document}
+
+\title{Mapping and Exposing MusicBrainz with Linked Data}
+
+\author{Peter Haase\inst{1} and Barry Norton\inst{2} and Juan Sequeda\inst{3}}
+
+\institute{fluid Operations AG, Walldorf, Germany \email{peter.haase@fluidops.com}
+\and Ontotext AD, Sofia, Bulgaria \email{barry.norton@ontotext.com}
+\and University of Texas, Austin, United States \email{jsequeda@cs.utexas.edu}}
+
+\maketitle
+
+\begin{abstract}
+In this demo we shall show how MusicBrainz data is mapped from its
+relational source into RDF via R2RML, and how it is interlinked with
+other sources such as DBpedia. We shall show, furthermore, how a
+music-oriented application can be quickly built over such cross-set
+Linked Data, including visualisation, using the Information
+Workbench. Other tools that will be demonstrated include Ultrawrap, as
+an R2RML engine, and OWLIM, and a triplestore.
+\end{abstract}
+
+\section{Introduction}\label{sec:Introduction}
+A vision of MusicBrainz as a rich Semantic Web resource is a
+long-standing one~\cite{DBLP:journals/expert/Swartz02}. In reality,
+however, MusicBrainz has had a chequered history with Semantic
+Technologies. In this demo we'll show how the latest approach to
+bringing together Linked Data technologies and principles with the
+MusicBrainz dataset enable relatively much easier application
+construction with latest generation tools.
+
+\section{Conclusion}\label{sec:Conclusion}
+
+\bibliographystyle{splncs03}
+\bibliography{../../LinkedBrainz}
+
+\end{document}

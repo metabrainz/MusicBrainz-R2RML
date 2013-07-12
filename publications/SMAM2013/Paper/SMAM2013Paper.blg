@@ -1,0 +1,45 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: SMAM2013Paper.aux
+The style file: splncs03.bst
+Database file #1: ../../LinkedBrainz.bib
+You've used 1 entry,
+            2785 wiz_defined-function locations,
+            591 strings with 4551 characters,
+and the built_in function-call counts, 524 in all, are:
+= -- 42
+> -- 7
+< -- 2
++ -- 3
+- -- 2
+* -- 31
+:= -- 70
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 1
+duplicate$ -- 49
+empty$ -- 49
+format.name$ -- 2
+if$ -- 115
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 9
+newline$ -- 8
+num.names$ -- 2
+pop$ -- 11
+preamble$ -- 1
+purify$ -- 3
+quote$ -- 0
+skip$ -- 18
+stack$ -- 0
+substring$ -- 33
+swap$ -- 32
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 0
+while$ -- 5
+width$ -- 2
+write$ -- 14

@@ -1,0 +1,58 @@
+\documentclass{llncs}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{llncsdoc}
+\usepackage{color}
+\usepackage{url}
+%\usepackage{amssymb}
+\usepackage{rotating}
+
+\begin{document}
+
+\title{Mapping, Interlinking and Exposing MusicBrainz as Linked Data}
+
+\author{Barry Norton\inst{1} and Juan Sequeda\inst{2} and Peter Haase\inst{3}}
+
+\institute{
+Ontotext AD, Sofia, Bulgaria \email{barry.norton@ontotext.com}
+\and 
+University of Texas, Austin, United States \email{jsequeda@cs.utexas.edu}
+\and 
+fluid Operations AG, Walldorf, Germany \email{peter.haase@fluidops.com}
+}
+
+\maketitle
+
+\begin{abstract}
+In this paper we shall document how the MusicBrainz dataset, under the
+Next Generation Schema and making use of extensible Advanced
+Relationships, can be mapped to RDF using R2RML. We shall further
+document how interlinkage is achieved to make this a bona fide
+contribution to Linked Open Data. We shall document the mappings and
+their execution and exposure of resulting data, and the use of further
+tools to increase the interlinkage achieved. Since MusicBrainz is a
+constantly evolving model, this will serve as documentation on how to
+include further Advanced Relationships, including those yet to be
+defined. This work also serves as one of the largest case studies in
+the use of R2RML that has existed to date.
+\end{abstract}
+
+\section{Introduction}\label{sec:Introduction}
+A vision of MusicBrainz as a rich Semantic Web resource is a
+long-standing one~\cite{DBLP:journals/expert/Swartz02}. In reality,
+however, MusicBrainz has had a chequered history with Semantic
+Technologies. In its early days the tool support for semantics were
+not well-developed and the project backed off to a large degree. In
+the intervening years, the relational database dumps were turned into
+RDF using the D2RQ tool as part of the DBtune
+project\footnote{\url{http://dbtune.org/}} at Queen Mary University of
+London, and the Zitgist
+viewer\footnote{\url{http://www.w3.org/2001/sw/wiki/Zitgist}}. More
+recently, MusicBrainz
+
+\section{Conclusion}\label{sec:Conclusion}
+
+\bibliographystyle{splncs03}
+\bibliography{../../LinkedBrainz}
+
+\end{document}

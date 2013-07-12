@@ -1,0 +1,60 @@
+\documentclass{llncs}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{llncsdoc}
+\usepackage{color}
+\usepackage{url}
+%\usepackage{amssymb}
+\usepackage{rotating}
+
+\begin{document}
+
+\title{Consuming Dynamic Linked Data}
+
+\author{Barry Norton\inst{1} and Reto Krummenacher\inst{2}}
+
+\institute{AIFB, Karlsruhe Institute of Technology, Germany \and Semantic
+Technology Institute, University of Innsbruck,
+Austria\\\email{firstname.lastname@\{kit.edu | sti-innsbruck.at\}}}
+
+\maketitle
+
+\setcounter{footnote}{0}
+
+\begin{abstract}
+The establishment of Linked Data principles has ushered in a remarkable new era of widespread semantics-based interoperation. In particular, the use of RDF, SPARQL  and HTTP allow a high degree of generic tool support and lightweight composition of data sources. This rosy picture, however, mainly applies to static data. When it comes to dynamics - both on-the-fly computation and the causation of side effects - the current norm is to drop the use of RDF in favour of JSON and XML. By introducing updates, the core SPARQL standard starts to address dynamics, but only in a very limited manner. Similarly while the use of HTTP is preserved, REST principles are also often abandoned. Linked Open Services establish principles for semantics-based interoperation and interlinkage in a dynamic environment, building on both Linked Data and REST principles and the use of HTTP, RDF and SPARQL.
+\end{abstract}
+
+
+\section{Introduction}\label{intro}
+\input{introduction.tex}
+
+\section{Motivation for Linked Open Services}\label{reasons}
+\input{motivation.tex}
+
+\section{LOS! Principles}\label{principles}
+\input{principles.tex}
+
+\section{Realisation and Examples}\label{examples}
+\input{realisation-intro.tex}
+
+%\subsection{LOS Wrappers}
+\input{realisation-wrappers.tex}
+
+%\subsection{LOS from Scratch}
+%\input{realisation-from-scratch.tex}
+
+\newpage
+
+\section{Related Work}
+\input{related.tex}
+
+\section{Conclusion}\label{conclusion}
+\input{conclusion.tex}
+
+%Included for Gather Purpose only (change to local path):
+%input "C:/Users/retkru/Documents/STI-Innsbruck/IRIS/LOS/publications/ISWC2010/LOS.bib"
+\bibliographystyle{splncs03}
+\bibliography{LOS}
+
+\end{document}

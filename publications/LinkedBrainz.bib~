@@ -1,0 +1,383 @@
+@MISC{w3c:wscdl,
+  author = {N. Kavantzas and D. Burdett and G. Ritzinger and T. Fletcher and
+    Y. Lafon and Ch. Barreto},
+  title = {{Web Services Choreography Description Language Version 1.0}},
+  howpublished = {W3C Candidate Recommendation},
+  month = {November},
+  year = {2005}
+}
+
+@MISC{oasis:ws-coordination,
+  author = {M. Feingold and R. Jeyaraman},
+  title = {{Web Services Coordination (WS-Coordination) Version 1.1}},
+  howpublished = {OASIS Standard},
+  month = {July},
+  year = {2007}
+}
+
+@INPROCEEDINGS{srivastava:composition,
+  AUTHOR =       {B. Srivastava and J. Koehler},
+  TITLE =        {{Web Service Composition -- Current Solutions and Open Problems}},
+  BOOKTITLE =    {Workshop on Planning for Web Services at 13th Int'l Conference on Automated Planning \& Scheduling},
+  YEAR =         {2003},
+  pages =        {28--35},
+  month =        {June}
+}
+
+@inproceedings{1341773,
+ author =       {V. Agarwal and G. Chafle and S. Mittal and B. Srivastava},
+ title =        {Understanding Approaches for Web Service Composition and Execution},
+ booktitle =    {1st Bangalore Annual Compute Conference},
+ year =         {2008},
+ pages =        {1--8},
+ month =        {January}
+}
+
+@INBOOK{klusch:coordination,
+  AUTHOR =       {M. Klusch},
+  editor =       {M. Schumacher and H. Helin and H. Schuldt},
+  TITLE =        {{CASCOM: Intelligent Service Coordination in the Semantic Web}},
+  CHAPTER =      {{Semantic Web Service Coordination}},
+  pages =        {59--105},
+  PUBLISHER =    {Birkh\"{a}user Verlag, Switzerland},
+  YEAR =         {2008},
+  month =        {September}
+}
+
+@ARTICLE{dustdar:composition,
+  AUTHOR =       {S. Dustdar and W. Schreiner},
+  TITLE =        {{A Survey on Web Services Composition}},
+  JOURNAL =      {Int'l Journal Web and Grid Services},
+  YEAR =         {2005},
+  volume =       {1},
+  number =       {1},
+  pages =        {1--30}
+}
+
+@INPROCEEDINGS{sirin:template-composition,
+  AUTHOR =       {E. Sirin and B. Parsia and J. Hendler},
+  TITLE =        {{Template-based Composition of Semantic Web Services}},
+  BOOKTITLE =    {AAAI Fall Symposium on Agents and the Semantic Web},
+  YEAR =         {2005},
+  pages =        {},
+  month =        {November}
+}
+
+@BOOK{cardoso:sws,
+  title = {{Semantic Web Services, Processes and Applications}},
+  publisher = {Springer},
+  year = {2006},
+  author = {J. Cardoso AND A.P. Sheth},
+  month = {August}
+}
+
+@BOOK{fensel:sws,
+  title = {Enabling Semantic Web Services: The Web Service Modeling Ontology},
+  publisher = {Springer},
+  year = {2006},
+  author = {D. Fensel AND H. Lausen AND A. Polleres AND J. de Bruijn AND M. Stollberg
+    AND D. Roman AND J. Domingue},
+  month = {November}
+}
+
+@BOOK{studer:sws,
+  title = {Semantic Web Services: Concepts, Technologies, and Applications},
+  publisher = {Springer},
+  year = {2007},
+  author = {R. Studer AND S. Grimm AND {Abecker, A. (eds.)}},
+  month = {June}
+}
+
+@PHDTHESIS{fielding:rest,
+  author = {R.Th. Fielding},
+  title = {{Architectural Styles and the Design of Network-based Software Architectures}},
+  school = {University of California, Irvine},
+  year = {2000}
+}
+
+@BOOK{richardson:restfulservices,
+  AUTHOR =       {L. Richardson and S. Ruby},
+  TITLE =        {{RESTful Web Services}},
+  PUBLISHER =    {O'Reilly Media},
+  YEAR =         {2007},
+  month =        {May},
+  isbn =         {978-0596529260}
+}
+
+@inproceedings{kopecky:grounding,
+    title   =   {{Semantic Web Services Grounding}},
+    year    =   {2006},
+    month   =   {February},
+    booktitle=  {Int'l Conference on Internet and Web Applications and Services},
+    author  =   {J. Kopecky and D. Roman and M. Moran and D. Fensel}
+}
+
+@inproceedings{BPEL4SWSDataflow,
+  author = {Joerg Nitzsche and Barry Norton},
+  title = {Ontology-Based Data Mediation in {BPEL} (for Semantic Web Services)},
+  booktitle = {Business Process Management Workshops},
+  publisher = {Springer},
+  year = {2008},
+  series = {LNCS},
+  pages = {523--534}
+}
+
+@Book{WSMOBook,
+  author =   {Fensel, D. and Lausen, H. and Polleres, A. and {de Bruijn}, J. and
+Stollberg, M. and  Roman, D. and Domingue, J.},
+  title =    {Enabling Semantic Web Services},
+  publisher =    {Springer},
+  year =     2006
+}
+
+@PhdThesis{NortonThesis,
+  author =        {Barry Norton},
+  title =         {A Theory for Flow-Oriented Software Processes},
+  school =        {Department of Computer Science, University of Sheffield},
+  year =          {2009}
+}
+
+@inproceedings{pedrinaci:LODservices,
+    title   =   {{Services and the Web of Data: An Unexploited Symbiosis}},
+    year    =   {2010},
+    month   =   {March},
+    booktitle=  {AAAI Spring Symposium},
+    author=     {C. Pedrinaci and J. Domingue and R. Krummenacher},
+    }
+
+@INPROCEEDINGS{polleres:pipes,
+  AUTHOR =       {D. Le-Phuoc and A. Polleres and Ch. Morbidoni and M. Hauswirth and G. Tummarello},
+  TITLE =        {{Rapid Prototyping of Semantic Mash-Ups through Semantic Web Pipes}},
+  BOOKTITLE =    {18th World Wide Web Conference},
+  YEAR =         {2009},
+  month =        {April},
+  pages =        {581--590}
+}
+
+@ARTICLE{gel:gencom,
+  author = {D. Gelernter},
+  title = {{Generative Communication in Linda}},
+  journal = {ACM Transactions on Programming Languages and Systems},
+  year = {1985},
+  volume = {7},
+  pages = {80--112},
+  number = {1},
+  month = {January}
+}
+
+@BOOK{engelmore:blackboard,
+  title = {Blackboard Systems},
+  publisher = {Addison-Wesley Publishers},
+  year = {1988},
+  editor = {T. Morgan},
+  author = {R. Engelmore},
+  month = {November}
+}
+
+@INPROCEEDINGS{krummenacher:service-economies,
+  AUTHOR =       {R. Krummenacher and B. Norton and E. Simperl and C. Pedrinaci},
+  TITLE =        {{SOA4All: Enabling Web-scale Service Economies}},
+  BOOKTITLE =    {3rd Int'l Conference on Semantic Computing},
+  YEAR =         {2009},
+  month =        {September}
+}
+
+@Book{ASMs,
+  author =   {E. B{\"o}rger and R. St{\"a}rk},
+  title =    {Abstract State Machines},
+  publisher =    {Springer},
+  year =     2003
+}
+
+@Misc{WSMOD15,
+  author =   {Dumitru Roman and James Scicluna and Dieter Fensel and Thomas
+Haselwanter},
+  title =    {Orchestration in {WSMO} (Working version)},
+  howpublished = {Available at \url{http://www.wsmo.org/TR/d15/v0.1/}},
+  month =    {January},
+  year =     2005
+}
+
+@ARTICLE{roman:wsmo,
+  author = {D. Roman and U. Keller and H. Lausen and J. de Bruijn and R. Lara
+    and M. Stollberg and A. Polleres and C. Feier and Ch. Bussler and
+    D. Fensel},
+  title = {{Web Service Modeling Ontology}},
+  journal = {Applied Ontology},
+  year = {2005},
+  volume = {1},
+  pages = {77-106},
+  number = {1}
+}
+
+@INPROCEEDINGS{liu:storage,
+  AUTHOR =       {B. Liu and B. Hu},
+  TITLE =        {{An Evaluation of RDF Storage Systems for Large Data Applications}},
+  BOOKTITLE =    {Int'l Conference on Semantics, Knowledge and Grid},
+  YEAR =         {2005},
+  pages =        {59--61}
+}
+
+@INPROCEEDINGS{rohloff:storage,
+  AUTHOR =       {K. Rohloff and M. Dean and I. Emmons and D. Ryder and J. Sumner},
+  TITLE =        {{An Evaluation of Triple-Store Technologies for Large Data Stores}},
+  BOOKTITLE =    {OTM Confederated Int'l Workshops and Posters},
+  YEAR =         {2007},
+  pages =        {1105-1114}
+}
+
+ @misc{ontotext:storage,
+  author        = {{Ontotext AD}},
+  title         = {{Robust Engines for Analysis and Management of Text and Data}},
+  howpublished  = {Ontotext Brochure},
+  year          = {2009}
+}
+
+@INPROCEEDINGS{krummenacher:scalability,
+  author = {R. Krummenacher and E. Simperl and D. Fensel},
+  title = {{Scalability in Semantic Computing: Semantic Middleware}},
+  booktitle = {2nd Int'l Conference on Semantic Computing},
+  year = {2008},
+  month = {August}
+}
+
+@inproceedings{WSMOLite,
+    title   =   {{WSMO-Lite Annotations for Web Services}},
+    pages   =   {674-689},
+    year    =   {2008},
+    booktitle=  {5th European Semantic Web Conferences},
+    month   =   {June},
+    author  =   {T. Vitvar and J. Kopecky and J. Viskova and D. Fensel}
+}
+
+@INPROCEEDINGS{sbodio07,
+  AUTHOR =       {M.L. Sbodio and C. Moulin},
+  TITLE =        {{SPARQL as an Expression Language for OWL-S}},
+  BOOKTITLE =    {Workshop on OWL-S: Experiences and Directions at 4th European Semantic Web Conference},
+  YEAR =         {2007},
+  month =        {June}
+}
+
+@INPROCEEDINGS{pedrinaci:aaai10,
+  AUTHOR =       {C. Pedrinaci and J. Domingue and R. Krummenacher},
+  TITLE =        {{Services and the Web of Data: An Unexploited Symbiosis}},
+  BOOKTITLE =    {AAAI Spring Symposium - Linked Data Meets Artificial Intelligence},
+  YEAR =         {2010},
+  month =        {March}
+}
+
+@MISC{bernerslee:rwld,
+  author =       {T. Berners-Lee},
+  title =        {{Read-Write Linked Data}},
+  howpublished = {W3C Design Issues},
+  year =         {2009/2010}
+}
+
+@Misc{OWL-S,
+  author =   {David Martin and Mark Burstein and Jerry Hobbs and Ora Lassila and
+Drew McDermott and Sheila McIlraith and Srini Narayanan and Massimo Paolucci and
+Bijan Parsia and Terry Payne and Evren Sirin and Naveen Srinivasan and Katia
+Sycara},
+  title =    {{OWL-S}: Semantic Markup for Web Services},
+  howpublished = {Available at \url{http://www.daml.org/services/owl-s/1.1/overview/}},
+  month =    {November},
+  year =     2004
+}
+
+@ARTICLE{SemanticWeb,
+  AUTHOR = {T. Berners-Lee and J. Hendler and O. Lassila},
+  TITLE = {The Semantic Web},
+  JOURNAL = {Scientific American},
+  YEAR = {2001},
+  VOLUME = {284},
+  NUMBER = {5},
+  PAGES = {35--43},
+}
+
+@MISC{bernerslee:swrm,
+  author =       {T. Berners-Lee},
+  title =        {{Semantic Web Road map}},
+  howpublished = {W3C Design Issues},
+  year =         {1998},
+  month =        {September}
+}
+
+@INPROCEEDINGS{fensel:tsc04,
+  author = {D. Fensel},
+  title = {{Triple-Space Computing: Semantic Web Services Based on Persistent
+    Publication of Information}},
+  booktitle = {IFIP Int'l Conference on Intelligence in Communication Systems},
+  year = {2004},
+  pages = {43--53},
+  month = {November}
+}
+
+@ARTICLE{nixon:semspacesurvey,
+  author = {L.J.B. Nixon and E. Simperl and R. Krummenacher and F. Martin-Recuerda},
+  title = {{Tuplespace-based computing for the Semantic Web: A survey of the
+    state of the art}},
+  journal = {Knowledge Engineering Review},
+  year = {2008},
+  volume = {23},
+  pages = {181-212},
+  number = {1},
+  month = {March}
+}
+
+@INPROCEEDINGS{krummenacher:LOS@FIS,
+  AUTHOR =       {Reto Krummenacher and Barry Norton and Adrian Marte},
+  TITLE =        {{Towards Linked Open Services}},
+  BOOKTITLE =    {3rd Future Internet Symposium},
+  YEAR =         {2010},
+  month =        {September}
+}
+
+@INPROCEEDINGS{microwsmo,
+  AUTHOR =       {Maria Maleshkova and Jacek Kopecky and Carlos Pedrinaci},
+  TITLE =        {{Adapting SAWSDL for Semantic Annotations of RESTful Services }},
+  BOOKTITLE =    {OTM Workshops},
+  YEAR =         {2009},
+  pages =        {917--926},
+  month =        {November},
+}
+
+@InProceedings{OWLSVM,
+  author =   {Massimo Paolucci and Anupriya Ankolekar and Naveen Srinivasan and
+Katia Sycara},
+  title =    {The {DAML-S} Virtual Machine },
+  booktitle =    {The SemanticWeb - ISWC 2003},
+  year =     2003,
+  volume =   2870,
+  series =   {LNCS},
+  publisher = {Springer},
+  pages = {290--305}
+}
+
+@InProceedings{IRS,
+   title = "{IRS III: A Platform and Infrastructure for Creating WSMO-based Semantic
+Web Services}",
+   year = "2004",
+   author = "Domingue, J. and Cabral, L. and Hakimpour, F.and Sell, D. and Motta, E.",
+   booktitle ="Proceedings of the Workshop on WSMO Implementations (WIW 2004)",
+}
+
+@inproceedings{WSMX,
+ author = {Haller, Armin and Cimpian, Emilia and Mocan, Adrian and Oren, Eyal and
+Bussler, Christoph},
+ title = {WSMX - A Semantic Service-Oriented Architecture},
+ booktitle = {ICWS '05: Proceedings of the IEEE International Conference on Web
+Services},
+ year = {2005},
+ pages = {321--328},
+ publisher = {IEEE Computer Society},
+ }
+
+@inproceedings{LIDS,
+ author = {Speiser, Sebastian and Harth, Andreas},
+ title = {Taking the LIDS off Data Silos},
+ booktitle = {Proceedings of the 6th International Conference on Semantic Systems (iSemantics)},
+ year = {2010},
+ publisher = {ACM International Conference Proceeding Series},
+ }
+
+

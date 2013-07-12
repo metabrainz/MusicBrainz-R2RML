@@ -1,0 +1,9 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem{DBLP:journals/expert/Swartz02}
+Swartz, A.: Musicbrainz: A semantic web service. IEEE Intelligent Systems
+  17(1),  76--77 (2002)
+
+\end{thebibliography}
