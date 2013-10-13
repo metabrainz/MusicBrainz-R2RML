@@ -27,33 +27,20 @@ lb:sm_medium rr:template "http://musicbrainz.org/record/{id}#_" .
 lb:Medium a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "medium"] ;
   rr:subjectMap [rr:class mo:Record ;
-                 rr:template "http://musicbrainz.org/record/{id}#_"] .
-
-lb:medium_name a rr:TriplesMap ;
-  rr:logicalTable [rr:tableName "medium"] ;
-  rr:subjectMap lb:sm_medium ;
+                 rr:template "http://musicbrainz.org/record/{id}#_"] ;
   rr:predicateObjectMap 
     [rr:predicate dc:title ;
-     rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
+     rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] ,
+    [rr:predicate mo:track_count ;
+     rr:objectMap [rr:column "track_count" ; rr:datatype xsd:int]] .
 
 lb:medium_track a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
     """SELECT medium.id, track.id AS track_id
        FROM medium
-         INNER JOIN tracklist ON medium.tracklist = tracklist.id
-         INNER JOIN track ON track.tracklist = tracklist.id"""] ;
+         INNER JOIN track ON track.medium = medium.id"""] ;
   rr:subjectMap lb:sm_medium ;
   rr:predicateObjectMap [
     rr:predicate mo:track ;
     rr:objectMap [rr:template "http://musicbrainz.org/track/{track_id}#_" ;
                   rr:termType rr:IRI]] .
-
-lb:medium_track_count a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT medium.id, tracklist.track_count 
-       FROM medium 
-         INNER JOIN tracklist ON medium.tracklist = tracklist.id"""];
-  rr:subjectMap lb:sm_medium ;
-  rr:predicateObjectMap 
-    [rr:predicate mo:track_count ;
-     rr:objectMap [rr:column "track_count" ; rr:datatype xsd:int]] .
