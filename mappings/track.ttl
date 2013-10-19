@@ -31,7 +31,16 @@ lb:Track a rr:TriplesMap ;
   rr:predicateObjectMap 
     [rr:predicate mo:track_number;
      rr:objectMap [rr:column "position" ;
-                   rr:datatype xsd:nonNegativeInteger]] .
+                   rr:datatype xsd:nonNegativeInteger]] ,
+#
+#lb:track_name a rr:TriplesMap ;
+#  rr:logicalTable [rr:sqlQuery
+#    """SELECT track.id, track_name.name
+#       FROM track INNER JOIN track_name ON track.name = track_name.id"""] ;
+#  rr:subjectMap lb:sm_track ;
+#  rr:predicateObjectMap
+    [rr:predicate dc:title ;
+     rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 
 lb:track_length a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
@@ -42,15 +51,6 @@ lb:track_length a rr:TriplesMap ;
   rr:predicateObjectMap 
     [rr:predicate mo:duration ;
      rr:objectMap [rr:column "length" ; rr:datatype xsd:int]] .
-
-lb:track_name a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT track.id, track_name.name 
-       FROM track INNER JOIN track_name ON track.name = track_name.id"""] ;
-  rr:subjectMap lb:sm_track ;
-  rr:predicateObjectMap 
-    [rr:predicate dc:title ;
-     rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 
 lb:track_recording a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery

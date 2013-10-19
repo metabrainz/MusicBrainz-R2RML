@@ -33,15 +33,15 @@ lb:Release a rr:TriplesMap ;
      rr:template "http://musicbrainz.org/release/{gid}#_"] ;
   rr:predicateObjectMap 
     [rr:predicate mo:musicbrainz_guid ;
-     rr:objectMap [rr:column "gid"; rr:datatype xsd:string]] .
-
-lb:release_name a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT release.gid, release_name.name  
-       FROM release
-            INNER JOIN release_name ON release.name = release_name.id"""] ;
-  rr:subjectMap lb:sm_release ;
-  rr:predicateObjectMap 
+     rr:objectMap [rr:column "gid"; rr:datatype xsd:string]] ,
+#
+#lb:release_name a rr:TriplesMap ;
+#  rr:logicalTable [rr:sqlQuery 
+#    """SELECT release.gid, release_name.name  
+#       FROM release
+#            INNER JOIN release_name ON release.name = release_name.id"""] ;
+#  rr:subjectMap lb:sm_release ;
+#  rr:predicateObjectMap 
     [rr:predicate dc:title ;
      rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 

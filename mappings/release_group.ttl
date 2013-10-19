@@ -31,16 +31,16 @@ lb:ReleaseGroup a rr:TriplesMap ;
      rr:template "http://musicbrainz.org/signal-group/{gid}#_"] ;
   rr:predicateObjectMap 
     [rr:predicate mo:musicbrainz_guid ;
-     rr:objectMap [rr:column "gid" ; rr:datetype xsd:string]] .
-
-lb:release_group_name a rr:TriplesMap ;
-  rr:logicalTable 
-    [rr:sqlQuery """SELECT release_group.gid, release_name.name 
-                    FROM release_group 
-                      INNER JOIN release_name 
-                        ON release_group.name = release_name.id"""] ;
-  rr:subjectMap lb:sm_release_group ;
-  rr:predicateObjectMap 
+     rr:objectMap [rr:column "gid" ; rr:datetype xsd:string]] ,
+#
+#lb:release_group_name a rr:TriplesMap ;
+#  rr:logicalTable 
+#    [rr:sqlQuery """SELECT release_group.gid, release_name.name 
+#                    FROM release_group 
+#                      INNER JOIN release_name 
+#                        ON release_group.name = release_name.id"""] ;
+#  rr:subjectMap lb:sm_release_group ;
+#  rr:predicateObjectMap 
     [rr:predicate dc:title ;
      rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 
