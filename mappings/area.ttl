@@ -22,12 +22,38 @@
 
 # MB area => geo:SpatialThing
 
-#pt.dbpedia.org wasn't resolving - to check
-lb:area_dbpedia a rr:TriplesMap ;
+lb:sm_area rr:template "http://musicbrainz.org/area/{gid}#_" .
+
+lb:area a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "area"] ;
   rr:subjectMap [rr:template "http://musicbrainz.org/area/{gid}#_" ;
                  rr:class geo:SpatialThing] ;
   rr:predicateObjectMap 
     [rr:predicate rdfs:label ;
-     rr:objectMap [rr:column "name"]] .
+     rr:objectMap [rr:column "name"]] ,
+    [rr:predicate ov:sortLabel ;
+     rr:objectMap [rr:column "sort_name"]] .
 
+
+lb:area_iso_3166_1 a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery """SELECT gid, code 
+                                  FROM area 
+                                    INNER JOIN iso_3166_1 
+                                      ON area.id = iso_3166_1.area"""] ;
+  rr:subjectMap lb:sm_area ;
+  rr:predicateObjectMap 
+    [rr:predicate owl:sameAs ;
+     rr:objectMap [rr:template "http://ontologi.es/place/{code}" ;
+                   rr:termType rr:IRI]] .
+
+lb:area_annotation a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT gid, text 
+       FROM annotation 
+         INNER JOIN area_annotation 
+           ON annotation.id = area_annotation.annotation
+         INNER JOIN area ON area_annotation.area = area.id"""] ;
+  rr:subjectMap lb:sm_area ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:comment ;
+     rr:objectMap [rr:column "text"]] .

@@ -43,24 +43,14 @@ lb:label_area a rr:TriplesMap ;
      rr:objectMap [rr:template "http://musicbrainz.org/area/{area}#_" ;
                    rr:termType rr:IRI]] .
 
-#lb:label_country a rr:TriplesMap ;
-#  rr:logicalTable [rr:sqlQuery
-#    """SELECT label.gid, country.iso_code  
-#       FROM label
-#         INNER JOIN country ON country.id = label.country"""] ;
-#  rr:subjectMap lb:sm_label ;
-#  rr:predicateObjectMap 
-#    [rr:predicate foaf:based_near ;
-#     rr:objectMap [rr:template "http://ontologi.es/place/{iso_code}" ;
-#                   rr:termType rr:IRI]] .
-
-#              ] ;
-#      <http://www.w3.org/ns/r2rml#predicateObjectMap> #ERROR with Ultrawrap
-#              [ <http://www.w3.org/ns/r2rml#objectMap>
-#                        [ <http://www.w3.org/ns/r2rml#parentTriplesMap>
-#                                  <file:///home/kurtjx/srcs/d2r-server-0.7/mapping.n3#LabelActivity>
-#                        ] ;
-#                <http://www.w3.org/ns/r2rml#predicate>
-#                        <http://purl.org/ontology/mo/activity>
-#              ] ;
-
+lb:label_annotation a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT gid, text 
+       FROM annotation 
+         INNER JOIN label_annotation 
+           ON annotation.id = label_annotation.annotation
+         INNER JOIN label ON label_annotation.label = label.id"""] ;
+  rr:subjectMap lb:sm_label ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:comment ;
+     rr:objectMap [rr:column "text"]] .

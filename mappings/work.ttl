@@ -56,3 +56,14 @@ lb:work_wikipedia a rr:TriplesMap ;
      rr:objectMap [rr:column "url" ;
                    rr:termType rr:IRI]] .
 
+lb:work_annotation a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT gid, text 
+       FROM annotation 
+         INNER JOIN work_annotation 
+           ON annotation.id = work_annotation.annotation
+         INNER JOIN work ON work_annotation.work = work.id"""] ;
+  rr:subjectMap lb:sm_work ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:comment ;
+     rr:objectMap [rr:column "text"]] .
