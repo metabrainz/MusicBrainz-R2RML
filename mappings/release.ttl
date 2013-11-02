@@ -161,3 +161,15 @@ lb:release_event_place a rr:TriplesMap ;
     [rr:predicate event:place ;
      rr:objectMap [rr:template "http://musicbrainz.org/area/{country}#_" ;
                    rr:termType rr:IRI]] .
+
+lb:release_annotation a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT gid, text 
+       FROM annotation 
+         INNER JOIN release_annotation 
+           ON annotation.id = release_annotation.annotation
+         INNER JOIN release ON release_annotation.release = release.id"""] ;
+  rr:subjectMap lb:sm_release ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:comment ;
+     rr:objectMap [rr:column "text"]] .

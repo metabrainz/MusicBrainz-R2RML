@@ -37,28 +37,18 @@ lb:Artist a rr:TriplesMap ;
     [rr:predicate ov:sortLabel ;
      rr:objectMap [rr:column "sort_name"]] .
 
+lb:artist_altLabel a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT artist.gid, artist_alias.name 
+       FROM artist
+         INNER JOIN artist_alias ON artist.id = artist_alias.artist"""] ;
+  rr:subjectMap [rr:template lb:sm_artist] ;
+  rr:predicateObjectMap 
+    [rr:predicate skos:altLabel ;
+     rr:objectMap [rr:column "name"]] .
+
 #    [rr:objectMap [rr:parentTriplesMap lb:ArtistActivity] ;
 #     rr:predicate mo:activity] ;
-
-#lb:artist_name a rr:TriplesMap ;
-#  rr:logicalTable [rr:sqlQuery 
-#    """SELECT artist.gid, artist_name.name  
-#       FROM artist
-#         INNER JOIN artist_name ON artist.name = artist_name.id"""] ;
-#  rr:subjectMap lb:sm_artist ;
-#  rr:predicateObjectMap 
-#    [rr:predicate foaf:name ;
-#     rr:objectMap [rr:column "name"]] 
-
-#lb:artist_sort_name a rr:TriplesMap ;
-#  rr:logicalTable [rr:sqlQuery 
-#    """SELECT artist.gid, artist_name.name 
-#       FROM artist 
-#         INNER JOIN artist_name ON artist.sort_name = artist_name.id"""] ;
-#  rr:subjectMap lb:sm_artist ;
-#  rr:predicateObjectMap 
-#    [rr:predicate ov:sortLabel ;
-#     rr:objectMap [rr:column "name"]] .
 
 lb:artist_type_person a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery 
@@ -219,18 +209,6 @@ lb:artist_seeAlso a rr:TriplesMap ;
     rr:predicate rdfs:seeAlso ;
     rr:objectMap [rr:column "url" ; rr:termType rr:IRI]] .
 
-#lb:artist_altLabel a rr:TriplesMap ;
-#  rr:logicalTable [rr:sqlQuery
-#    """SELECT artist.gid, artist_name.name 
-#       FROM artist
-#         INNER JOIN artist_alias ON artist.id = artist_alias.artist
-#         INNER JOIN musicbrainz.artist_name 
-#           ON artist_alias.name = artist_name.id"""] ;
-#  rr:subjectMap [rr:template lb:sm_artist] ;
-#  rr:predicateObjectMap 
-#    [rr:predicate skos:altLabel ;
-#     rr:objectMap [rr:column "name"]] .
-
 lb:artist_recording a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery 
     """SELECT artist.gid, recording.gid AS recording_gid 
@@ -244,3 +222,15 @@ lb:artist_recording a rr:TriplesMap ;
   rr:predicateObjectMap 
     [rr:predicate foaf:made ;
      rr:objectMap [rr:template "http://musicbrainz.org/recording/{gid}#_"]] .
+
+lb:artist_annotation a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT gid, text 
+       FROM annotation 
+         INNER JOIN artist_annotation 
+           ON annotation.id = artist_annotation.annotation
+         INNER JOIN artist ON artist_annotation.artist = artist.id"""] ;
+  rr:subjectMap lb:sm_artist ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:comment ;
+     rr:objectMap [rr:column "text"]] .

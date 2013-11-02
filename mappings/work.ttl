@@ -23,6 +23,7 @@
 # MB work => mo:MusicalWork, mo:Composition
 
 lb:sm_work rr:template "http://musicbrainz.org/work/{gid}#_" .
+lb:sm_composition rr:template "http://musicbrainz.org/work/{gid}#composition" .
 
 lb:Work a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "work"] ;
@@ -39,6 +40,24 @@ lb:work_composition a rr:TriplesMap ;
   rr:predicateObjectMap 
     [rr:predicate mo:produced_work ;
      rr:objectMap lb:sm_work] .
+
+#Note there is no longer a direct association between artists and works
+# rather composition is one of the advanced relationships between
+# artists and works
+lb:composition_artist a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT work.gid, artist.gid AS artist_gid  
+       FROM artist 
+         INNER JOIN l_artist_work ON artist.id = l_artist_work.entity0
+         INNER JOIN link ON l_artist_work.link = link.id 
+         INNER JOIN link_type ON link_type = link_type.id 
+         INNER JOIN work on l_artist_work.entity1 = work.id  
+       WHERE link_type.gid='d59d99ea-23d4-4a80-b066-edca32ee158f'"""] ;
+  rr:subjectMap lb:sm_composition ;
+  rr:predicateObjectMap 
+    [rr:predicate mo:composer ;
+     rr:objectMap [rr:template "http://musicbrainz.org/artist/{artist_gid}#_" ;
+                   rr:termType rr:IRI]] .
 
 #BN: turned rdfs:seeAlso into foaf:isPrimaryTopicOf
 lb:work_wikipedia a rr:TriplesMap ;

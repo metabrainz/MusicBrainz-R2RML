@@ -85,3 +85,15 @@ lb:release_group_seeAlso a rr:TriplesMap ;
     [rr:predicate rdfs:seeAlso ;
      rr:objectMap [rr:column "url" ; rr:termType rr:IRI]] .
 
+lb:release_group_annotation a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT gid, text 
+       FROM annotation 
+         INNER JOIN release_group_annotation 
+           ON annotation.id = release_group_annotation.annotation
+         INNER JOIN release_group 
+           ON release_group_annotation.release_group = release_group.id"""] ;
+  rr:subjectMap lb:sm_release_group ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:comment ;
+     rr:objectMap [rr:column "text"]] .
