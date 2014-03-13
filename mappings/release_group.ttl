@@ -22,7 +22,7 @@
 
 # MB release_group => mo:SignalGroup
 
-lb:sm_release_group rr:template "http://musicbrainz.org/signal-group/{gid}#_" .
+lb:sm_release_group rr:template "http://musicbrainz.org/release-group/{gid}#_" .
 
 lb:ReleaseGroup a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "release_group"] ;
