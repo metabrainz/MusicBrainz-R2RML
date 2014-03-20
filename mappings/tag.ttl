@@ -1,0 +1,124 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+
+@prefix lb: <https://github.com/LinkedBrainz/r2rml/v0.1#> .
+@prefix ngs: <http://musicbrainz.org/NGS> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix is: <http://purl.org/ontology/is/core#> .
+@prefix isi: <http://purl.org/ontology/is/inst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+@prefix muto: <http://purl.org/muto/core#> .
+
+# MB tag => muto:Tag
+
+lb:sm_tag rr:template "http://musicbrainz.org/tag/{name}#_" .
+lb:sm_artist rr:template "http://musicbrainz.org/artist/{gid}#_" .
+lb:sm_label rr:template "http://musicbrainz.org/label/{gid}#_" .
+lb:sm_place rr:template "http://musicbrainz.org/place/{gid}#_" .
+lb:sm_recording rr:template "http://musicbrainz.org/recording/{gid}#_" .
+lb:sm_release rr:template "http://musicbrainz.org/release/{gid}#_" .
+lb:sm_work rr:template "http://musicbrainz.org/work/{gid}#_" .
+
+lb:tag a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "tag"] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/tag/{name}#_" ;
+                 rr:class muto:Tag] ;
+  rr:predicateObjectMap 
+    [rr:predicate muto:tagLabel ;
+     rr:objectMap [rr:column "name"]] .
+
+lb:artist_tag a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT artist.gid, tag.name
+       FROM artist_tag
+         INNER JOIN artist ON artist_tag.artist = artist.id
+         INNER JOIN tag ON artist_tag.tag = tag.id"""] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/artist/{gid}#tag/{name}";
+                 rr:class muto:Tagging] ;
+  rr:predicateObjectMap
+    [rr:predicate muto:taggedResource ;
+     rr:objectMap lb:sm_artist] ,
+    [rr:predicate muto:hasTag ;
+     rr:objectMap lb:sm_tag] .
+
+lb:label_tag a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT label.gid, tag.name
+       FROM label_tag
+         INNER JOIN label ON label_tag.label = label.id
+         INNER JOIN tag ON label_tag.tag = tag.id"""] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/label/{gid}#tag/{name}";
+                 rr:class muto:Tagging] ;
+  rr:predicateObjectMap
+    [rr:predicate muto:taggedResource ;
+     rr:objectMap lb:sm_label] ,
+    [rr:predicate muto:hasTag ;
+     rr:objectMap lb:sm_tag] .
+
+lb:place_tag a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT place.gid, tag.name
+       FROM place_tag
+         INNER JOIN place ON place_tag.place = place.id
+         INNER JOIN tag ON place_tag.tag = tag.id"""] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/place/{gid}#tag/{name}";
+                 rr:class muto:Tagging] ;
+  rr:predicateObjectMap
+    [rr:predicate muto:taggedResource ;
+     rr:objectMap lb:sm_place] ,
+    [rr:predicate muto:hasTag ;
+     rr:objectMap lb:sm_tag] .
+
+lb:recording_tag a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT recording.gid, tag.name
+       FROM recording_tag
+         INNER JOIN recording ON recording_tag.recording = recording.id
+         INNER JOIN tag ON recording_tag.tag = tag.id"""] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/recording/{gid}#tag/{name}";
+                 rr:class muto:Tagging] ;
+  rr:predicateObjectMap
+    [rr:predicate muto:taggedResource ;
+     rr:objectMap lb:sm_recording] ,
+    [rr:predicate muto:hasTag ;
+     rr:objectMap lb:sm_tag] .
+
+lb:release_tag a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT release.gid, tag.name
+       FROM release_tag
+         INNER JOIN release ON release_tag.release = release.id
+         INNER JOIN tag ON release_tag.tag = tag.id"""] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/release/{gid}#tag/{name}";
+                 rr:class muto:Tagging] ;
+  rr:predicateObjectMap
+    [rr:predicate muto:taggedResource ;
+     rr:objectMap lb:sm_release] ,
+    [rr:predicate muto:hasTag ;
+     rr:objectMap lb:sm_tag] .
+
+lb:work_tag a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT work.gid, tag.name
+       FROM work_tag
+         INNER JOIN work ON work_tag.work = work.id
+         INNER JOIN tag ON work_tag.tag = tag.id"""] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/work/{gid}#tag/{name}";
+                 rr:class muto:Tagging] ;
+  rr:predicateObjectMap
+    [rr:predicate muto:taggedResource ;
+     rr:objectMap lb:sm_work] ,
+    [rr:predicate muto:hasTag ;
+     rr:objectMap lb:sm_tag] .

@@ -1,0 +1,45 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+
+@prefix lb: <https://github.com/LinkedBrainz/r2rml/v0.1#> .
+@prefix ngs: <http://musicbrainz.org/NGS> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix is: <http://purl.org/ontology/is/core#> .
+@prefix isi: <http://purl.org/ontology/is/inst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+
+# MB place => geo:SpatialThing
+
+lb:sm_place rr:template "http://musicbrainz.org/place/{gid}#_" .
+
+lb:place a rr:TriplesMap ;
+  rr:logicalTable [rr:tableName "place"] ;
+  rr:subjectMap [rr:template "http://musicbrainz.org/place/{gid}#_" ;
+                 rr:class geo:SpatialThing] ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:label ;
+     rr:objectMap [rr:column "name"]] .
+
+lb:place_annotation a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery 
+    """SELECT gid, text 
+       FROM annotation 
+         INNER JOIN place_annotation 
+           ON annotation.id = place_annotation.annotation
+         INNER JOIN place ON place_annotation.place = place.id"""] ;
+  rr:subjectMap lb:sm_place ;
+  rr:predicateObjectMap 
+    [rr:predicate rdfs:comment ;
+     rr:objectMap [rr:column "text"]] .
