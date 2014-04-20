@@ -90,9 +90,7 @@ lb:ReleaseEvent a rr:TriplesMap ;
        FROM release 
          INNER JOIN release_country ON release_country.release = release.id
          INNER JOIN area ON area.id = release_country.country
-       WHERE date_year IS NOT NULL
-         AND date_month IS NOT NULL
-         AND date_day IS NOT NULL"""] ;
+       WHERE date_year IS NOT NULL"""] ;
   rr:subjectMap [rr:class mo:ReleaseEvent ;
                  rr:template "http://musicbrainz.org/release/{gid}#{country}"] ;
   rr:predicateObjectMap 
