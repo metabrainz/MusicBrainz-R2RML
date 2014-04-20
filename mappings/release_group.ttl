@@ -31,7 +31,7 @@ lb:ReleaseGroup a rr:TriplesMap ;
      rr:template "http://musicbrainz.org/signal-group/{gid}#_"] ;
   rr:predicateObjectMap 
     [rr:predicate mo:musicbrainz_guid ;
-     rr:objectMap [rr:column "gid" ; rr:datetype xsd:string]] ,
+     rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] ,
 #
 #lb:release_group_name a rr:TriplesMap ;
 #  rr:logicalTable 
