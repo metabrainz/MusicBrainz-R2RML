@@ -221,7 +221,7 @@ lb:artist_recording a rr:TriplesMap ;
   rr:subjectMap [rr:template lb:sm_artist] ;
   rr:predicateObjectMap 
     [rr:predicate foaf:made ;
-     rr:objectMap [rr:template "http://musicbrainz.org/recording/{gid}#_"]] .
+     rr:objectMap [rr:template "http://musicbrainz.org/recording/{recording_gid}#_"]] .
 
 lb:artist_annotation a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery 
