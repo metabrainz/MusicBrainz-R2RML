@@ -30,9 +30,10 @@ lb:area a rr:TriplesMap ;
                  rr:class geo:SpatialThing] ;
   rr:predicateObjectMap 
     [rr:predicate rdfs:label ;
-     rr:objectMap [rr:column "name"]] ,
-    [rr:predicate ov:sortLabel ;
-     rr:objectMap [rr:column "sort_name"]] .
+     rr:objectMap [rr:column "name"]] .
+# Removed 2014-08-31 - no such column since 2014-05
+#    [rr:predicate ov:sortLabel ;
+#     rr:objectMap [rr:column "sort_name"]] .
 
 
 lb:area_iso_3166_1 a rr:TriplesMap ;
