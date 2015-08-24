@@ -86,3 +86,18 @@ lb:work_annotation a rr:TriplesMap ;
   rr:predicateObjectMap 
     [rr:predicate rdfs:comment ;
      rr:objectMap [rr:column "text"]] .
+
+lb:work_lyrics a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT work.gid, url
+       FROM work
+         INNER JOIN l_url_work ON work.id = l_url_work.entity1
+         INNER JOIN link ON l_url_work.link = link.id
+         INNER JOIN link_type ON link_type = link_type.id
+         INNER JOIN url on l_url_work.entity0 = url.id
+       WHERE link_type.gid='e38e65aa-75e0-42ba-ace0-072aeb91a538'"""] ;
+  rr:subjectMap lb:sm_work ;
+  rr:predicateObjectMap
+    [rr:predicate mo:lyrics ;
+     rr:objectMap [rr:column "url" ;
+                   rr:termType rr:IRI]] .
