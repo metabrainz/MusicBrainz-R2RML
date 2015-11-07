@@ -42,7 +42,7 @@ lb:artist_altLabel a rr:TriplesMap ;
     """SELECT artist.gid, artist_alias.name 
        FROM artist
          INNER JOIN artist_alias ON artist.id = artist_alias.artist"""] ;
-  rr:subjectMap [rr:template lb:sm_artist] ;
+  rr:subjectMap lb:sm_artist ;
   rr:predicateObjectMap 
     [rr:predicate skos:altLabel ;
      rr:objectMap [rr:column "name"]] .
@@ -204,7 +204,7 @@ lb:artist_seeAlso a rr:TriplesMap ;
                ('04a5b104-a4c2-4bac-99a1-7b837c37d9e4',
                 '5728c659-56b2-4e23-97d1-80e1f229c7d3',
                 'ded9a80a-e6de-4831-880c-c78b9981b54b')"""] ;
-  rr:subjectMap [rr:template lb:sm_artist] ;
+  rr:subjectMap lb:sm_artist ;
   rr:predicateObjectMap [
     rr:predicate rdfs:seeAlso ;
     rr:objectMap [rr:column "url" ; rr:termType rr:IRI]] .
@@ -218,7 +218,7 @@ lb:artist_recording a rr:TriplesMap ;
            ON artist_credit.id = artist_credit_name.artist_credit
          INNER JOIN recording 
            ON artist_credit.id = recording.artist_credit"""] ;
-  rr:subjectMap [rr:template lb:sm_artist] ;
+  rr:subjectMap lb:sm_artist ;
   rr:predicateObjectMap 
     [rr:predicate foaf:made ;
      rr:objectMap [rr:template "http://musicbrainz.org/recording/{recording_gid}#_"]] .
