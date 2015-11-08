@@ -1,2 +1,8 @@
 #!/bin/sh
-rm -f dump.out; (for mapping in mappings/*.ttl; do echo "$mapping"; done) | sed 's!mappings/!!g' | sed 's!.ttl!!g' | while read mapping; do /media/rdf/MusicBrainz-R2RML/dump.sh $mapping >> dump.out; done
+rm -f dump.out
+for mappath in mappings/*.ttl; do
+  mapfile=$(basename "$mappath")
+  mapping=${mapfile%%.ttl}
+  sh ./dump.sh $mapping >> dump.out
+done
+
