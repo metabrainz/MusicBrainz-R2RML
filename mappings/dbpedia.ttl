@@ -24,7 +24,7 @@
 
 lb:sm_area rr:template "http://musicbrainz.org/area/{gid}#_" .
 lb:sm_artist rr:template "http://musicbrainz.org/artist/{gid}#_" .
-lb:sm_release_group rr:template "http://musicbrainz.org/signal-group/{gid}#_" .
+lb:sm_release_group rr:template "http://musicbrainz.org/release-group/{gid}#_" .
 
 #pt.dbpedia.org wasn't resolving - to check
 
