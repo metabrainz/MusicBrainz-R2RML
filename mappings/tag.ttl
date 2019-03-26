@@ -35,7 +35,7 @@ lb:tag a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "tag"] ;
   rr:subjectMap [rr:template "http://musicbrainz.org/tag/{name}#_" ;
                  rr:class muto:Tag] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate muto:tagLabel ;
      rr:objectMap [rr:column "name"]] .
 

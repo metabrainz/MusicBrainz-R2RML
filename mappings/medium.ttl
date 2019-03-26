@@ -28,7 +28,7 @@ lb:Medium a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "medium"] ;
   rr:subjectMap [rr:class mo:Record ;
                  rr:template "http://musicbrainz.org/record/{id}#_"] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate dc:title ;
      rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] ,
     [rr:predicate mo:track_count ;
@@ -47,11 +47,11 @@ lb:medium_track a rr:TriplesMap ;
                   rr:termType rr:IRI]] .
 
 lb:medium_format a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT medium.id, medium_format.id as medium_format_id 
-       FROM medium 
+  rr:logicalTable [rr:sqlQuery
+    """SELECT medium.id, medium_format.id as medium_format_id
+       FROM medium
          INNER JOIN medium_format ON medium.format = medium_format.id"""];
   rr:subjectMap lb:sm_medium ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate mo:media_type ;
      rr:objectMap [rr:column "medium_format_id" ; rr:termType rr:IRI]] .

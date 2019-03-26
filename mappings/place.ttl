@@ -28,18 +28,18 @@ lb:place a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "place"] ;
   rr:subjectMap [rr:template "http://musicbrainz.org/place/{gid}#_" ;
                  rr:class geo:SpatialThing] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:label ;
      rr:objectMap [rr:column "name"]] .
 
 lb:place_annotation a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT gid, text 
-       FROM annotation 
-         INNER JOIN place_annotation 
+  rr:logicalTable [rr:sqlQuery
+    """SELECT gid, text
+       FROM annotation
+         INNER JOIN place_annotation
            ON annotation.id = place_annotation.annotation
          INNER JOIN place ON place_annotation.place = place.id"""] ;
   rr:subjectMap lb:sm_place ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:comment ;
      rr:objectMap [rr:column "text"]] .
