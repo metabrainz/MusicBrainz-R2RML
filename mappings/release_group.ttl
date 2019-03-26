@@ -26,21 +26,12 @@ lb:sm_release_group rr:template "http://musicbrainz.org/release-group/{gid}#_" .
 
 lb:ReleaseGroup a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "release_group"] ;
-  rr:subjectMap 
+  rr:subjectMap
     [rr:class mo:SignalGroup ;
      rr:template "http://musicbrainz.org/release-group/{gid}#_"] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] ,
-#
-#lb:release_group_name a rr:TriplesMap ;
-#  rr:logicalTable 
-#    [rr:sqlQuery """SELECT release_group.gid, release_name.name 
-#                    FROM release_group 
-#                      INNER JOIN release_name 
-#                        ON release_group.name = release_name.id"""] ;
-#  rr:subjectMap lb:sm_release_group ;
-#  rr:predicateObjectMap 
     [rr:predicate dc:title ;
      rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 
@@ -48,16 +39,16 @@ lb:ReleaseGroup a rr:TriplesMap ;
 #BN: turned rdfs:seeAlso into foaf:isPrimaryTopicOf
 lb:release_group_wikipedia a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
-    """SELECT release_group.gid, url  
+    """SELECT release_group.gid, url
        FROM release_group
          INNER JOIN l_release_group_url ON release_group.id
                       = l_release_group_url.entity0
-         INNER JOIN link ON l_release_group_url.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN url on l_release_group_url.entity1 = url.id  
+         INNER JOIN link ON l_release_group_url.link = link.id
+         INNER JOIN link_type ON link_type = link_type.id
+         INNER JOIN url on l_release_group_url.entity1 = url.id
        WHERE link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'"""] ;
   rr:subjectMap lb:sm_release_group ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate foaf:isPrimaryTopicOf ;
      rr:objectMap [rr:column "url" ;
                    rr:termType rr:IRI]] .
@@ -65,10 +56,10 @@ lb:release_group_wikipedia a rr:TriplesMap ;
 #Covers IMDB, MusicMoz, IOBDB
 # N.B. could also produce Linked IMDB sameAs?
 lb:release_group_seeAlso a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT release_group.gid, musicbrainz.url.url 
+  rr:logicalTable [rr:sqlQuery
+    """SELECT release_group.gid, musicbrainz.url.url
        FROM release_group
-         INNER JOIN l_release_group_url 
+         INNER JOIN l_release_group_url
            ON l_release_group_url.entity0 = release_group.id
          INNER JOIN url
            ON l_release_group_url.entity1 = url.id
@@ -81,19 +72,19 @@ lb:release_group_seeAlso a rr:TriplesMap ;
           'd111c58d-0d9b-4675-99c1-ddc5a8e01847',
           'fd87657e-aa2f-44ad-b5d8-d97c0c938a4d')"""] ;
   rr:subjectMap lb:sm_release_group ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:seeAlso ;
      rr:objectMap [rr:column "url" ; rr:termType rr:IRI]] .
 
 lb:release_group_annotation a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT gid, text 
-       FROM annotation 
-         INNER JOIN release_group_annotation 
+  rr:logicalTable [rr:sqlQuery
+    """SELECT gid, text
+       FROM annotation
+         INNER JOIN release_group_annotation
            ON annotation.id = release_group_annotation.annotation
-         INNER JOIN release_group 
+         INNER JOIN release_group
            ON release_group_annotation.release_group = release_group.id"""] ;
   rr:subjectMap lb:sm_release_group ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:comment ;
      rr:objectMap [rr:column "text"]] .

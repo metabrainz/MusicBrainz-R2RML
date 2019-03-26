@@ -28,29 +28,29 @@ lb:Label a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "label"] ;
   rr:subjectMap [rr:class mo:Label ;
                  rr:template "http://musicbrainz.org/label/{gid}#_"] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] .
 
 lb:label_area a rr:TriplesMap ;
-  rr:logicalTable[rr:sqlQuery 
+  rr:logicalTable[rr:sqlQuery
     """SELECT label.gid, area.gid AS area
        FROM label
             INNER JOIN area ON label.area = area.id"""] ;
   rr:subjectMap lb:sm_label ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate foaf:based_near ;
      rr:objectMap [rr:template "http://musicbrainz.org/area/{area}#_" ;
                    rr:termType rr:IRI]] .
 
 lb:label_annotation a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT gid, text 
-       FROM annotation 
-         INNER JOIN label_annotation 
+  rr:logicalTable [rr:sqlQuery
+    """SELECT gid, text
+       FROM annotation
+         INNER JOIN label_annotation
            ON annotation.id = label_annotation.annotation
          INNER JOIN label ON label_annotation.label = label.id"""] ;
   rr:subjectMap lb:sm_label ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:comment ;
      rr:objectMap [rr:column "text"]] .

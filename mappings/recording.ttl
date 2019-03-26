@@ -26,10 +26,10 @@ lb:sm_recording rr:template "http://musicbrainz.org/recording/{gid}#_" .
 
 lb:Recording a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "recording"] ;
-  rr:subjectMap 
+  rr:subjectMap
     [rr:class mo:Signal ;
      rr:template "http://musicbrainz.org/recording/{gid}#_"] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] ,
     [rr:predicate dc:title ;
@@ -38,14 +38,14 @@ lb:Recording a rr:TriplesMap ;
      rr:objectMap [rr:column "length"; rr:datatype xsd:float]] .
 
 lb:recording_annotation a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT gid, text 
-       FROM annotation 
-         INNER JOIN recording_annotation 
+  rr:logicalTable [rr:sqlQuery
+    """SELECT gid, text
+       FROM annotation
+         INNER JOIN recording_annotation
            ON annotation.id = recording_annotation.annotation
-         INNER JOIN recording 
+         INNER JOIN recording
            ON recording_annotation.recording = recording.id"""] ;
   rr:subjectMap lb:sm_recording ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:comment ;
      rr:objectMap [rr:column "text"]] .

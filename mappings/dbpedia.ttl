@@ -30,65 +30,65 @@ lb:sm_release_group rr:template "http://musicbrainz.org/signal-group/{gid}#_" .
 
 lb:artist_dbpedia a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
-    """SELECT artist.gid, 
-              REPLACE(REPLACE(url, 'wikipedia.org/wiki', 
-                                   'dbpedia.org/resource'), 
-                      'http://en.', 
+    """SELECT artist.gid,
+              REPLACE(REPLACE(url, 'wikipedia.org/wiki',
+                                   'dbpedia.org/resource'),
+                      'http://en.',
                       'http://')
-                AS url 
-       FROM artist 
+                AS url
+       FROM artist
          INNER JOIN l_artist_url ON artist.id = l_artist_url.entity0
-         INNER JOIN link ON l_artist_url.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN url on l_artist_url.entity1 = url.id  
+         INNER JOIN link ON l_artist_url.link = link.id
+         INNER JOIN link_type ON link_type = link_type.id
+         INNER JOIN url on l_artist_url.entity1 = url.id
        WHERE link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'
-       AND url SIMILAR TO 
+       AND url SIMILAR TO
                  'http://(de|el|en|es|ko|pl|pt).wikipedia.org/wiki/%'"""] ;
   rr:subjectMap lb:sm_artist ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate owl:sameAs ;
      rr:objectMap [rr:column "url"; rr:termType rr:IRI]] .
 
 lb:release_group_dbpedia a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
-    """SELECT release_group.gid, 
-              REPLACE(REPLACE(url, 'wikipedia.org/wiki', 
-                                   'dbpedia.org/resource'), 
-                      'http://en.', 
+    """SELECT release_group.gid,
+              REPLACE(REPLACE(url, 'wikipedia.org/wiki',
+                                   'dbpedia.org/resource'),
+                      'http://en.',
                       'http://')
-                AS url 
-       FROM release_group 
-         INNER JOIN l_release_group_url ON release_group.id 
+                AS url
+       FROM release_group
+         INNER JOIN l_release_group_url ON release_group.id
                       = l_release_group_url.entity0
-         INNER JOIN link ON l_release_group_url.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN url on l_release_group_url.entity1 = url.id  
+         INNER JOIN link ON l_release_group_url.link = link.id
+         INNER JOIN link_type ON link_type = link_type.id
+         INNER JOIN url on l_release_group_url.entity1 = url.id
        WHERE link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'
-       AND url SIMILAR TO 
+       AND url SIMILAR TO
                  'http://(de|el|en|es|ko|pl|pt).wikipedia.org/wiki/%'"""] ;
   rr:subjectMap lb:sm_release_group ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:seeAlso ;
      rr:objectMap [rr:column "url"; rr:termType rr:IRI]] .
 
 lb:area_dbpedia a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
-    """SELECT area.gid, 
-              REPLACE(REPLACE(url, 'wikipedia.org/wiki', 
-                                   'dbpedia.org/resource'), 
-                      'http://en.', 
+    """SELECT area.gid,
+              REPLACE(REPLACE(url, 'wikipedia.org/wiki',
+                                   'dbpedia.org/resource'),
+                      'http://en.',
                       'http://')
-                AS url 
+                AS url
        FROM area
          INNER JOIN l_area_url ON area.id = l_area_url.entity0
-         INNER JOIN link ON l_area_url.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN url on l_area_url.entity1 = url.id  
+         INNER JOIN link ON l_area_url.link = link.id
+         INNER JOIN link_type ON link_type = link_type.id
+         INNER JOIN url on l_area_url.entity1 = url.id
        WHERE link_type.gid='9228621d-9720-35c3-ad3f-327d789464ec'
-       AND url SIMILAR TO 
+       AND url SIMILAR TO
                  'http://(de|el|en|es|ko|pl|pt).wikipedia.org/wiki/%'"""] ;
   rr:subjectMap lb:sm_area ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate owl:sameAs ;
      rr:objectMap [rr:column "url"; rr:termType rr:IRI]] .
 

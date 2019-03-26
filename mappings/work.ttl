@@ -29,7 +29,7 @@ lb:Work a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "work"] ;
   rr:subjectMap [rr:class mo:MusicalWork ;
                  rr:template "http://musicbrainz.org/work/{gid}#_"] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] .
 
@@ -37,7 +37,7 @@ lb:work_composition a rr:TriplesMap ;
   rr:logicalTable [rr:tableName "work"] ;
   rr:subjectMap [rr:class mo:Composition ;
                  rr:template "http://musicbrainz.org/work/{gid}#composition"] ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate mo:produced_work ;
      rr:objectMap lb:sm_work] .
 
@@ -46,15 +46,15 @@ lb:work_composition a rr:TriplesMap ;
 # artists and works
 lb:composition_artist a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
-    """SELECT work.gid, artist.gid AS artist_gid  
-       FROM artist 
+    """SELECT work.gid, artist.gid AS artist_gid
+       FROM artist
          INNER JOIN l_artist_work ON artist.id = l_artist_work.entity0
-         INNER JOIN link ON l_artist_work.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN work on l_artist_work.entity1 = work.id  
+         INNER JOIN link ON l_artist_work.link = link.id
+         INNER JOIN link_type ON link_type = link_type.id
+         INNER JOIN work on l_artist_work.entity1 = work.id
        WHERE link_type.gid='d59d99ea-23d4-4a80-b066-edca32ee158f'"""] ;
   rr:subjectMap lb:sm_composition ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate mo:composer ;
      rr:objectMap [rr:template "http://musicbrainz.org/artist/{artist_gid}#_" ;
                    rr:termType rr:IRI]] .
@@ -62,28 +62,28 @@ lb:composition_artist a rr:TriplesMap ;
 #BN: turned rdfs:seeAlso into foaf:isPrimaryTopicOf
 lb:work_wikipedia a rr:TriplesMap ;
   rr:logicalTable [rr:sqlQuery
-    """SELECT work.gid, url  
-       FROM work 
+    """SELECT work.gid, url
+       FROM work
          INNER JOIN l_url_work ON work.id = l_url_work.entity1
-         INNER JOIN link ON l_url_work.link = link.id 
-         INNER JOIN link_type ON link_type = link_type.id 
-         INNER JOIN url on l_url_work.entity0 = url.id  
+         INNER JOIN link ON l_url_work.link = link.id
+         INNER JOIN link_type ON link_type = link_type.id
+         INNER JOIN url on l_url_work.entity0 = url.id
        WHERE link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'"""] ;
   rr:subjectMap lb:sm_work ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate foaf:isPrimaryTopicOf ;
      rr:objectMap [rr:column "url" ;
                    rr:termType rr:IRI]] .
 
 lb:work_annotation a rr:TriplesMap ;
-  rr:logicalTable [rr:sqlQuery 
-    """SELECT gid, text 
-       FROM annotation 
-         INNER JOIN work_annotation 
+  rr:logicalTable [rr:sqlQuery
+    """SELECT gid, text
+       FROM annotation
+         INNER JOIN work_annotation
            ON annotation.id = work_annotation.annotation
          INNER JOIN work ON work_annotation.work = work.id"""] ;
   rr:subjectMap lb:sm_work ;
-  rr:predicateObjectMap 
+  rr:predicateObjectMap
     [rr:predicate rdfs:comment ;
      rr:objectMap [rr:column "text"]] .
 
