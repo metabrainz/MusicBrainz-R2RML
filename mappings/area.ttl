@@ -54,3 +54,40 @@ lb:area_annotation a rr:TriplesMap ;
   rr:predicateObjectMap
     [rr:predicate rdfs:comment ;
      rr:objectMap [rr:column "text"]] .
+
+lb:area_geonames a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT area.gid, url.url
+       FROM area
+         INNER JOIN musicbrainz.l_area_url
+           ON area.id = l_area_url.entity0
+         INNER JOIN url ON l_area_url.entity1 = url.id
+         INNER JOIN link ON l_area_url.link = link.id
+         INNER JOIN link_type ON link.link_type = link_type.id
+       WHERE link_type.gid = 'c52f14c0-e9ac-4a8a-8f7a-c47328de168f'"""] ;
+  rr:subjectMap lb:sm_area ;
+  rr:predicateObjectMap [
+    rr:predicate rdfs:seeAlso ;
+    rr:objectMap [rr:column "url" ; rr:termType rr:IRI]] .
+
+# MB stores Wikidata links as https and /wiki/
+# but the actual permanent URI is http and /entity/
+lb:area_wikidata a rr:TriplesMap ;
+  rr:logicalTable [rr:sqlQuery
+    """SELECT area.gid,
+              regexp_replace(
+                url.url,
+                'https://www.wikidata.org/wiki/',
+                'http://www.wikidata.org/entity/'
+              ) as url
+       FROM area
+         INNER JOIN musicbrainz.l_area_url
+           ON area.id = l_area_url.entity0
+         INNER JOIN url ON l_area_url.entity1 = url.id
+         INNER JOIN link ON l_area_url.link = link.id
+         INNER JOIN link_type ON link.link_type = link_type.id
+       WHERE link_type.gid = '85c5256f-aef1-484f-979a-42007218a1c2'"""] ;
+  rr:subjectMap lb:sm_area ;
+  rr:predicateObjectMap [
+    rr:predicate owl:sameAs ;
+    rr:objectMap [rr:column "url" ; rr:termType rr:IRI]] .
