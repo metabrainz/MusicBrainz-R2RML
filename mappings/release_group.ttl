@@ -32,7 +32,7 @@ lb:ReleaseGroup a rr:TriplesMap ;
   rr:predicateObjectMap
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] ,
-    [rr:predicate dc:title ;
+    [rr:predicate dct:title ;
      rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 
 #BN: removed the 'canonicalisation' that broke non-English Wikipedia URLs

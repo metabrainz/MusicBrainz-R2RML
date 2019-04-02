@@ -32,7 +32,7 @@ lb:Track a rr:TriplesMap ;
     [rr:predicate mo:track_number;
      rr:objectMap [rr:column "position" ;
                    rr:datatype xsd:nonNegativeInteger]] ,
-    [rr:predicate dc:title ;
+    [rr:predicate dct:title ;
      rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 
 lb:track_length a rr:TriplesMap ;
