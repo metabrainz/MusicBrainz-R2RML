@@ -31,6 +31,8 @@ lb:Label a rr:TriplesMap ;
   rr:predicateObjectMap
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] .
+    [rr:predicate rdfs:label ;
+     rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] .
 
 lb:label_area a rr:TriplesMap ;
   rr:logicalTable[rr:sqlQuery

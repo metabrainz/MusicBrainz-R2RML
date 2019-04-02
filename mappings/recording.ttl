@@ -32,7 +32,7 @@ lb:Recording a rr:TriplesMap ;
   rr:predicateObjectMap
     [rr:predicate mo:musicbrainz_guid ;
      rr:objectMap [rr:column "gid" ; rr:datatype xsd:string]] ,
-    [rr:predicate dc:title ;
+    [rr:predicate dct:title ;
      rr:objectMap [rr:column "name"]] ,
     [rr:predicate mo:duration ;
      rr:objectMap [rr:column "length"; rr:datatype xsd:float]] .

@@ -29,7 +29,7 @@ lb:Medium a rr:TriplesMap ;
   rr:subjectMap [rr:class mo:Record ;
                  rr:template "http://musicbrainz.org/record/{id}#_"] ;
   rr:predicateObjectMap
-    [rr:predicate dc:title ;
+    [rr:predicate dct:title ;
      rr:objectMap [rr:column "name" ; rr:datatype xsd:string]] ,
     [rr:predicate mo:track_count ;
      rr:objectMap [rr:column "track_count" ; rr:datatype xsd:int]] .
